@@ -171,12 +171,36 @@ console.log('--------- Problem 3 --------')
 function nextDate(dates) {
   // find the date that will happen next in dates
   // return the next date
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0); // Set the time to midnight
+
+  // Filter out dates that are before today and sort the remaining dates
+  const futureDates = dates.filter(date => date > currentDate).sort((a, b) => a - b);
+
+  if (!futureDates.length) {
+    console.log("No upcoming dates");
+    return;
+  }
+
+  // Calculate the days difference
+  const oneDay = 86400000;
+  const daysDifference = Math.round(Math.abs((futureDates[0] - currentDate) / oneDay));
+
+  // Print the result
+  console.log(`Your next event is ${daysDifference} days from now, on ${futureDates[0].getMonth() + 1}/${futureDates[0].getDate()}/${futureDates[0].getFullYear()}.`);
 }
 
-nextDate([today, dueDate, startDate, bday, newYear])
+const inLawsVisit = new Date(2023, 8, 14);  
+const halloween = new Date(2023, 9, 31);
+const graduationDay = new Date(2025, 4, 25);
+const cruiseTime = new Date(2024, 2, 10);
+const nextHoliday = new Date(2023, 8, 4);
+
+nextDate([inLawsVisit, halloween, graduationDay, nextHoliday, cruiseTime]);
 
 // Stretch Goal: Return a human readable string: 
-// Your next appointment is 3 days from now. 
+// Your next event is 3 days from now. 
+// Done!
 
 console.log('--------- Problem 4 --------')
 
