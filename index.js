@@ -140,9 +140,17 @@ console.log('--------- Problem 2 --------')
 function orderDates(dates) {
   // orders the dates 
   // returns a new array of ordered dates
+  const orderedDates = dates.sort((a, b) => a - b).map(date => `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`);
+  console.log(`[${orderedDates.join(', ')}]`);
 }
 
-orderDates([today, dueDate, startDate, bday, newYear])
+const todayDate = new Date();
+const freya = new Date(2022, 1, 1);
+const anniversary = new Date(2021, 11, 21);
+const christmasDecadeAgo = new Date(2013, 11, 25);
+const husbandBday =  new Date (1987, 3, 6);
+
+orderDates([todayDate, freya, anniversary, christmasDecadeAgo, husbandBday])
 
 // [bday, startdate, duedate, newyear]
 
