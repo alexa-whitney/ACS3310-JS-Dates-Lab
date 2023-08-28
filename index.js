@@ -148,7 +148,7 @@ const todayDate = new Date();
 const freya = new Date(2022, 1, 1);
 const anniversary = new Date(2021, 11, 21);
 const christmasDecadeAgo = new Date(2013, 11, 25);
-const husbandBday =  new Date (1987, 3, 6);
+const husbandBday = new Date(1987, 3, 6);
 
 orderDates([todayDate, freya, anniversary, christmasDecadeAgo, husbandBday])
 
@@ -190,7 +190,7 @@ function nextDate(dates) {
   console.log(`Your next event is ${daysDifference} days from now, on ${futureDates[0].getMonth() + 1}/${futureDates[0].getDate()}/${futureDates[0].getFullYear()}.`);
 }
 
-const inLawsVisit = new Date(2023, 8, 14);  
+const inLawsVisit = new Date(2023, 8, 14);
 const halloween = new Date(2023, 9, 31);
 const graduationDay = new Date(2025, 4, 25);
 const cruiseTime = new Date(2024, 2, 10);
@@ -208,11 +208,33 @@ console.log('--------- Problem 4 --------')
 // and a year, and returns the day of the week for that date in that year. 
 
 function whensYourParty(date, year) {
-  // Find the day of the year for your birthday
+  // Days of the week array
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  // Create an array to store the days of the week since birth
+  const daysSinceBirth = [];
+
+  // Starting from the birth year, iterate through each year to the specified year
+  for (let y = date.getFullYear(); y <= year; y++) {
+    const birthdayThatYear = new Date(y, date.getMonth(), date.getDate());
+    daysSinceBirth.push(days[birthdayThatYear.getDay()]);
+  }
+
+  // Create a new Date object for the birthday in the specified year
+  const partyDate = new Date(year, date.getMonth(), date.getDate());
+  const dayOfWeek = days[partyDate.getDay()];
+
+  console.log(`Your birthday in ${year} is on a ${dayOfWeek}.`);
+  console.log(`Since you were born, your birthdays have fallen on the following days of the week: ${daysSinceBirth.join(', ')}.`);
+
+  return daysSinceBirth;
 }
 
-whensYourParty(bday, 2022)
+const alexaDay = new Date(1987, 3, 6);
+whensYourParty(alexaDay, 2040)
+
 
 // Stretch Goal: Return an array listing all 
 // the days when your birthday occured since 
 // you were born. 
+// DONE!
